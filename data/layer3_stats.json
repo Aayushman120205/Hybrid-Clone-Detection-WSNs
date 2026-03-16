@@ -1,0 +1,10 @@
+{
+  "layer": 3,
+  "timestamp": "2026-03-14T02:36:35.429575",
+  "blockchain_blocks": 101,
+  "nodes_revoked": 100,
+  "true_blocked": 514,
+  "false_blocked": 497,
+  "detection_rate": 0.9866,
+  "chain_valid": true
+}

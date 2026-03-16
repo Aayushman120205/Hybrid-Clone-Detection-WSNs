@@ -1,0 +1,51 @@
+{
+  "system": "WSN Hybrid 3-Layer Clone Detection",
+  "timestamp": "2026-03-14T02:36:35.429877",
+  "layer1": {
+    "layer": 1,
+    "filter_type": "Cuckoo Filter",
+    "timestamp": "2026-03-14T02:36:34.409044",
+    "total_records": 2195,
+    "actual_clones": 422,
+    "flagged": 807,
+    "true_positives": 270,
+    "false_positives": 509,
+    "precision": 0.3466,
+    "recall": 0.6398,
+    "f1_score": 0.4496
+  },
+  "layer2": {
+    "layer": 2,
+    "model": "RandomForest",
+    "timestamp": "2026-03-14T02:36:35.286220",
+    "accuracy": 0.9636,
+    "roc_auc": 0.988,
+    "cv_f1_mean": 0.9116,
+    "cv_f1_std": 0.0218,
+    "forwarded_to_layer3": 1032,
+    "feature_importances": {
+      "packet_rate": 0.3668,
+      "pkt_zscore": 0.2314,
+      "energy_pkt_ratio": 0.192,
+      "pkt_rate_rolling_mean": 0.0856,
+      "pkt_rate_rolling_std": 0.0386,
+      "layer1_flagged": 0.0192,
+      "energy_remaining": 0.0173,
+      "energy_drop_rate": 0.0132,
+      "dist_to_ch_bs": 0.0126,
+      "energy_drop_rate_mean": 0.0119,
+      "energy_consumed_uJ": 0.01,
+      "is_cluster_head": 0.0015
+    }
+  },
+  "layer3": {
+    "layer": 3,
+    "timestamp": "2026-03-14T02:36:35.429575",
+    "blockchain_blocks": 101,
+    "nodes_revoked": 100,
+    "true_blocked": 514,
+    "false_blocked": 497,
+    "detection_rate": 0.9866,
+    "chain_valid": true
+  }
+}
