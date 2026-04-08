@@ -167,9 +167,9 @@ def run_layer2(input_path="data/layer1_results.csv",
     joblib.dump(model, model_save_path)
 
     flagged_for_l3 = df['send_to_blockchain'].sum()
-    print(f"\n  ✅ Model saved to  : {model_save_path}")
-    print(f"  ✅ Results saved to: {output_path}")
-    print(f"  📤 {flagged_for_l3} records forwarded to Layer 3 (Blockchain)\n")
+    print(f"\n  Model saved to  : {model_save_path}")
+    print(f"  Results saved to: {output_path}")
+    print(f"  {flagged_for_l3} records forwarded to Layer 3 (Blockchain)\n")
 
     stats = {
         "layer": 2,
