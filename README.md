@@ -235,13 +235,6 @@ This work proposes a **Hybrid Multi-Layer Security Framework** combining:
 * Tamper-proof audit logs
 * Scalable WSN security
 
----
-
-# 🎤 How to Explain (Viva Ready)
-
-> NS-3 simulates the WSN network and generates data.
-> The dataset is processed through a 3-layer detection pipeline.
-> Results are visualized back in NS-3 showing detected malicious nodes.
 
 ---
 
@@ -256,4 +249,4 @@ This work proposes a **Hybrid Multi-Layer Security Framework** combining:
 
 # 👨‍💻 Author
 
-**Aayushman Sehrawat, Ayush Chauhan, Arnav Jain OK**
+**Aayushman Sehrawat, Ayush Chauhan, Arnav Jain**
