@@ -256,4 +256,4 @@ This work proposes a **Hybrid Multi-Layer Security Framework** combining:
 
 # 👨‍💻 Author
 
-**Aayushman Sehrawat, Aayush, Arnav Jain**
+**Aayushman Sehrawat, Ayush Chauhan, Arnav Jain**
