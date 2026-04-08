@@ -200,8 +200,8 @@ def run_layer1(data_path="data/wsn_data.csv", output_path="data/layer1_results.c
     print(f"  Recall                  : {recall:.4f}")
     print(f"  F1 Score                : {f1:.4f}")
     print(f"{'─'*50}")
-    print(f"  ✅ Results saved to: {output_path}")
-    print(f"  📤 {flagged_total} records forwarded to Layer 2\n")
+    print(f"  Results saved to: {output_path}")
+    print(f"  {flagged_total} records forwarded to Layer 2\n")
 
     # Save stats
     stats = {
