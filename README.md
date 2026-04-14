@@ -1,299 +1,240 @@
-# WSN Hybrid Clone Detection System
+# WSN FL-HybridClone Detection System
 
-## 3-Layer Security Architecture: Cuckoo Filter + Random Forest + Blockchain
+Three-layer clone and malicious node detection pipeline for Wireless Sensor Networks (WSNs):
 
-A hybrid security framework for **Wireless Sensor Networks (WSN)** that detects **clone attacks and malicious nodes** using a **multi-layer detection pipeline**.
+1. Layer 1: improved Cuckoo-filter-style screening with spatial and behavioural checks
+2. Layer 2: federated CNN-BiLSTM-Attention behaviour analysis, with a Gradient Boosting fallback if TensorFlow is unavailable
+3. Layer 3: blockchain-backed identity verification and node revocation
 
-The system integrates:
+The repository already includes sample datasets and generated outputs for both `ns3` and `matlab` style runs.
 
-* **Layer 1 — Cuckoo Filter** for fast duplicate ID detection
-* **Layer 2 — Machine Learning (Random Forest)** for behavioural anomaly detection
-* **Layer 3 — Blockchain** for identity verification and secure node revocation
+## Project Layout
 
-This architecture improves **accuracy, reliability, and auditability** of WSN security.
-
----
-
-# 📁 Project Structure
-
-```
+```text
 wsn-hybrid/
-│
-├── matlab/
-│   └── wsn_dataset_simulation.m      # MATLAB dataset generator
-│
+├── main.py
+├── README.md
 ├── layer1_filter/
-│   └── layer1_filter.py              # Cuckoo Filter clone detection
-│
+│   └── layer1_filter.py
 ├── layer2_ml/
-│   └── layer2_ml.py                  # Random Forest behavioural analysis
-│
+│   └── layer2_ml.py
 ├── layer3_blockchain/
-│   └── layer3_blockchain.py          # Blockchain identity verification
-│
-├── data/
-│   ├── wsn_data.csv
-│   ├── layer1_results.csv
-│   ├── layer2_results.csv
-│   ├── layer3_results.csv
-│   ├── ml_model.pkl
-│   ├── blockchain_ledger.json
-│   └── final_report.json
-│
-├── main.py                           # Runs full detection pipeline
-├── requirements.txt
-└── README.md
+│   └── layer3_blockchain.py
+├── matlab/
+│   ├── generate_sample_data.py
+│   └── wsn_simulation.m
+└── data/
+    ├── ns3/wsn_data.csv
+    ├── layer1_stats.json
+    ├── layer2_stats.json
+    ├── layer3_stats.json
+    ├── ml_model.pkl
+    ├── ml_model.keras
+    ├── blockchain_ledger.json
+    ├── outputs_ns3/
+    └── outputs_matlab/
 ```
 
-The **main pipeline (`main.py`)** runs all three layers sequentially.
+## How The Pipeline Works
 
----
+### Layer 1: Cuckoo + Spatial + Behaviour Filter
 
-# 🚀 Installation
+Implemented in [layer1_filter.py](/Users/aayushmansehrawat/wsn-hybrid/layer1_filter/layer1_filter.py).
 
-### 1️⃣ Install Python dependencies
+Layer 1 does not rely on a plain duplicate-ID check alone. It combines:
 
+- a Cuckoo-filter-style membership check over `node_id` plus coarse location bucket
+- spatial inconsistency detection by comparing a node's current and previous positions
+- a behaviour score derived from protocol counters, neighbour status, send/receive imbalance, and energy anomaly
+
+A record is flagged when one of these conditions is met:
+
+- both the Cuckoo lookup and spatial check indicate suspicion
+- the behaviour score is high enough on its own
+- spatial drift combines with moderate behavioural suspicion
+
+Main output columns added by Layer 1:
+
+- `layer1_flagged`
+- WSN protocol columns carried forward, such as `adv_ch_sent`, `data_sent`, `data_rcvd`, and `nbr_*_status`
+
+Saved files:
+
+- `data/layer1_stats.json`
+- pipeline runs save record-level results to `data/outputs_<source>/layer1_results.csv`
+
+### Layer 2: FL CNN-BiLSTM-Attention
+
+Implemented in [layer2_ml.py](/Users/aayushmansehrawat/wsn-hybrid/layer2_ml/layer2_ml.py).
+
+Layer 2 engineers time-dependent behavioural features, then trains:
+
+- `CNN + BiLSTM + MultiHeadAttention` with FedProx-style federated aggregation when TensorFlow is available and the dataset is large enough
+- `GradientBoostingClassifier` as a fallback
+
+Important implementation details:
+
+- train/test split is done at the `node_id` level to avoid leakage
+- several high-risk leak columns are explicitly excluded from model features:
+  `location_conflict`, `flag_score`, `layer1_flagged`, and `send_rcv_ratio`
+- temporal features include packet rolling mean/std, energy drop statistics, z-scores, and neighbour anomaly scores
+- Layer 1 output is used only as a forwarding gate to Layer 3, not as a model feature
+
+Main output columns added by Layer 2:
+
+- `pkt_rolling_mean`
+- `pkt_rolling_std`
+- `energy_drop`
+- `pkt_zscore`
+- `ml_threat_score`
+- `ml_prediction`
+- `send_to_blockchain`
+
+Saved files:
+
+- `data/layer2_stats.json`
+- `data/ml_model.pkl`
+- `data/ml_model.keras` when the TensorFlow path is used
+- pipeline runs save record-level results to `data/outputs_<source>/layer2_results.csv`
+
+### Layer 3: Blockchain Verification
+
+Implemented in [layer3_blockchain.py](/Users/aayushmansehrawat/wsn-hybrid/layer3_blockchain/layer3_blockchain.py).
+
+Layer 3 initializes a lightweight blockchain ledger, registers trusted round-1 normal nodes, logs an FL round entry, and verifies only records where `send_to_blockchain == 1`.
+
+Verification uses:
+
+- location mismatch against the registered baseline
+- energy plausibility
+- packet-rate anomalies
+- protocol counter anomalies such as `adv_ch_sent` and `data_sent_bs`
+- neighbour anomaly counts from `nbr_1_status` to `nbr_5_status`
+- `send_rcv_ratio`
+
+Possible outcomes:
+
+- `ALLOWED`
+- `BLOCKED`
+
+Main output columns added by Layer 3:
+
+- `bc_verified`
+- `bc_reason`
+- `bc_confidence`
+- `final_decision`
+
+Saved files:
+
+- `data/layer3_stats.json`
+- `data/blockchain_ledger.json`
+- pipeline runs save record-level results to `data/outputs_<source>/layer3_results.csv`
+
+## Data Sources
+
+`main.py` currently defaults to:
+
+```python
+DATA_SOURCE = "ns3"
+DATA_PATH = f"data/{DATA_SOURCE}/wsn_data.csv"
 ```
-pip install -r requirements.txt
-```
 
-Dependencies include:
+That means a full pipeline run reads:
 
-```
-pandas
-numpy
-scikit-learn
-joblib
-```
+- `data/ns3/wsn_data.csv`
 
----
+and writes:
 
-# 🧪 Step 1 — Generate WSN Dataset
+- `data/outputs_ns3/layer1_results.csv`
+- `data/outputs_ns3/layer2_results.csv`
+- `data/outputs_ns3/layer3_results.csv`
+- `data/outputs_ns3/final_report.json`
 
-Run the MATLAB simulation:
+To run against MATLAB-style outputs instead, change `DATA_SOURCE` in [main.py](/Users/aayushmansehrawat/wsn-hybrid/main.py).
 
-```matlab
-wsn_dataset_simulation.m
-```
+## Dataset Format
 
-This generates:
+The included NS-3 dataset contains WSN-DS-style columns such as:
 
-```
-data/wsn_data.csv
-```
+- `node_id`, `round`, `simulation_time`
+- `packet_rate`, `energy_remaining`, `energy_consumed_uJ`
+- `dist_to_ch`, `dist_to_bs`
+- `is_cluster_head`, `x_pos`, `y_pos`
+- protocol counters like `adv_ch_sent`, `join_req_sent`, `sch_sent`, `data_sent`, `data_rcvd`, `data_sent_bs`
+- neighbour status fields `nbr_1_status` through `nbr_5_status`
+- `send_rcv_ratio`
+- `label` where `0 = normal`, `1 = clone`, `2 = malicious`
 
-### Dataset Characteristics
+The repository also includes two dataset generators:
 
-| Parameter       | Value       |
-| --------------- | ----------- |
-| Nodes           | 100         |
-| Rounds          | 20          |
-| Clone nodes     | 12%         |
-| Malicious nodes | 5%          |
-| Network area    | 100m × 100m |
+- [generate_sample_data.py](/Users/aayushmansehrawat/wsn-hybrid/matlab/generate_sample_data.py) creates a simple synthetic CSV at `data/wsn_data.csv`
+- [wsn_simulation.m](/Users/aayushmansehrawat/wsn-hybrid/matlab/wsn_simulation.m) generates a MATLAB-based dataset at `data/wsn_data.csv`
 
-### Generated Features
+These generator scripts produce a simpler schema than the bundled NS-3 dataset.
 
-| Feature            | Description                           |
-| ------------------ | ------------------------------------- |
-| node_id            | Sensor node identifier                |
-| round              | Network round                         |
-| packet_rate        | Packet transmission rate              |
-| energy_remaining   | Remaining node energy                 |
-| energy_consumed_uJ | Energy consumed                       |
-| dist_to_ch_bs      | Distance to cluster head/base station |
-| is_cluster_head    | Whether node is cluster head          |
-| x_pos, y_pos       | Node position coordinates             |
-| label              | 0 = Normal, 1 = Clone, 2 = Malicious  |
+## Running The System
 
-Clone nodes are injected by **duplicating node IDs at different locations**, simulating a clone attack.
+Run the full pipeline:
 
----
-
-# ▶️ Step 2 — Run Full Detection Pipeline
-
-Run the system:
-
-```
+```bash
 python main.py
 ```
 
-Pipeline execution:
+Run individual layers:
 
-```
-WSN Dataset
-   ↓
-Layer 1: Cuckoo Filter
-   ↓
-Layer 2: Random Forest ML
-   ↓
-Layer 3: Blockchain Verification
-   ↓
-Final Decision
+```bash
+python layer1_filter/layer1_filter.py
+python layer2_ml/layer2_ml.py
+python layer3_blockchain/layer3_blockchain.py
 ```
 
----
+## Python Dependencies
 
-# ⚡ Layer 1 — Cuckoo Filter (Fast Detection)
+There is currently no `requirements.txt` in this repository, so install dependencies manually.
 
-Purpose:
+Minimum packages used by the code:
 
-* Detect duplicate node IDs in the same round
-* Identify possible clone nodes instantly
-
-Method:
-
-* Uses **Cuckoo Filter probabilistic structure**
-* Each round initializes a fresh filter
-* Duplicate node IDs are flagged as suspicious
-
-Outputs:
-
-```
-data/layer1_results.csv
-data/layer1_stats.json
+```bash
+pip install pandas numpy scikit-learn joblib
 ```
 
-Metrics:
+Optional for the federated deep-learning path in Layer 2:
 
-* Precision
-* Recall
-* F1 Score
-
----
-
-# 🤖 Layer 2 — Machine Learning (Behaviour Analysis)
-
-Algorithm:
-
-**Random Forest Classifier**
-
-Behavioural features analysed:
-
-* packet rate
-* energy remaining
-* energy consumption
-* distance to cluster head
-* cluster head role
-* rolling packet statistics
-* energy drop rate
-* anomaly z-score
-
-Feature engineering includes:
-
-* rolling packet mean/std
-* packet anomaly score
-* energy drop analysis
-* packet-energy ratio
-
-Outputs:
-
-```
-data/layer2_results.csv
-data/ml_model.pkl
-data/layer2_stats.json
+```bash
+pip install tensorflow
 ```
 
-Metrics:
+Without TensorFlow, Layer 2 falls back to Gradient Boosting.
 
-* Accuracy
-* ROC-AUC
-* Cross-validation F1 score
+## Current Example Metrics
 
----
+The checked-in stats files currently show:
 
-# ⛓️ Layer 3 — Blockchain Identity Verification
+- Layer 1: precision `0.9979`, recall `0.9921`, F1 `0.9950`
+- Layer 2: accuracy `0.9709`, ROC-AUC `0.9424`, forwarded to Layer 3 `3344`
+- Layer 3: detection rate `0.9818`, clone detection `0.9921`, malicious detection `0.9570`, chain valid `true`
 
-Purpose:
+These values come from:
 
-* Verify suspicious nodes against a trusted ledger
-* Prevent node identity spoofing
-* Maintain immutable security logs
+- [layer1_stats.json](/Users/aayushmansehrawat/wsn-hybrid/data/layer1_stats.json)
+- [layer2_stats.json](/Users/aayushmansehrawat/wsn-hybrid/data/layer2_stats.json)
+- [layer3_stats.json](/Users/aayushmansehrawat/wsn-hybrid/data/layer3_stats.json)
 
-Blockchain features:
+## Final Report
 
-* Genesis block
-* Node registration
-* Proof-of-Work mining
-* Node revocation records
+After a full run, `main.py` writes a summary report to:
 
-Verification checks include:
+- `data/outputs_ns3/final_report.json` for NS-3 runs
+- `data/outputs_matlab/final_report.json` for MATLAB runs
 
-* location consistency
-* energy plausibility
-* packet rate anomaly
+The report combines:
 
-If verification fails:
+- data source and detected feature version
+- Layer 1 metrics
+- Layer 2 model and performance metrics
+- Layer 3 blockchain and detection metrics
 
-```
-node → BLOCKED
-```
+## Notes
 
-Outputs:
-
-```
-data/layer3_results.csv
-data/blockchain_ledger.json
-data/layer3_stats.json
-```
-
----
-
-# 📊 Output Files
-
-| File                   | Description                        |
-| ---------------------- | ---------------------------------- |
-| wsn_data.csv           | Raw dataset from MATLAB simulation |
-| layer1_results.csv     | Output after Cuckoo Filter         |
-| layer2_results.csv     | Output after ML analysis           |
-| layer3_results.csv     | Final decisions                    |
-| ml_model.pkl           | Trained Random Forest model        |
-| blockchain_ledger.json | Blockchain ledger                  |
-| final_report.json      | Combined system metrics            |
-
----
-
-# 📈 Final System Metrics
-
-The final report includes:
-
-### Layer 1
-
-* Precision
-* Recall
-* F1 score
-
-### Layer 2
-
-* Accuracy
-* ROC-AUC
-* Cross-validation F1
-
-### Layer 3
-
-* Detection rate
-* True/False blocked nodes
-* Blockchain integrity
-
-The full report is saved in:
-
-```
-data/final_report.json
-```
-
----
-
-# 📚 Research Contribution
-
-This project proposes a **Hybrid Multi-Layer Security Framework for Wireless Sensor Networks** combining:
-
-* Probabilistic filtering
-* Machine learning behavioural detection
-* Blockchain identity verification
-
-Advantages:
-
-* Fast clone detection
-* Behaviour-based anomaly detection
-* Tamper-proof audit logs
-* Improved WSN security reliability
+- The README previously referenced files and behavior that no longer matched the code, such as a `requirements.txt` file and a pure Random Forest Layer 2 model.
+- The current implementation is closer to: improved rule-based screening, leak-aware federated sequence modeling, and blockchain verification with audit logging.
