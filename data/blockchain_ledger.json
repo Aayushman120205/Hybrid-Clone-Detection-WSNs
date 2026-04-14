@@ -1,6 +1,6 @@
 {
   "is_valid": true,
-  "chain_length": 29,
+  "chain_length": 20,
   "registered": 82,
   "blacklisted": [
     0,
@@ -20,147 +20,138 @@
     14,
     15,
     16,
-    20,
-    28,
-    31,
-    45,
-    49,
-    54,
-    58,
-    61,
-    80,
     84
   ],
   "fl_rounds_logged": 1,
   "blocks": [
     {
-      "index": 19,
-      "timestamp": "2026-04-14T13:27:45.396278",
-      "hash": "0039e93f14d55e91dca6f71cfee2defd065f194ab21302d6adb9aa502abc7c7d",
-      "previous_hash": "00266a7717815b1dfe59128d9e1d423de0dd6b476d707466e61336abf045e50c",
-      "nonce": 150,
+      "index": 10,
+      "timestamp": "2026-04-14T13:13:30.928579",
+      "hash": "005679eff06a0f773722b5921276d0a77b6b165ba4f1552a91d66c2263fb6b37",
+      "previous_hash": "00be358ac67336ea0ed07e70c82d7926772022223b64ba42c32d8d17781fce82",
+      "nonce": 24,
       "data": {
         "type": "REVOKE",
-        "node_id": 20,
-        "reason": "PACKET_RATE_HIGH(74.0)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.396276"
+        "node_id": 8,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:30.928548"
       }
     },
     {
-      "index": 20,
-      "timestamp": "2026-04-14T13:27:45.397614",
-      "hash": "00f4306a660c984b9b2e0630646f3d3e349063d7f213c8b425caa8b169461884",
-      "previous_hash": "0039e93f14d55e91dca6f71cfee2defd065f194ab21302d6adb9aa502abc7c7d",
+      "index": 11,
+      "timestamp": "2026-04-14T13:13:30.945914",
+      "hash": "004266fcdbbed0eca3fcf4f971673eeca8dc74883ff7ba9856b85137550dd3cb",
+      "previous_hash": "005679eff06a0f773722b5921276d0a77b6b165ba4f1552a91d66c2263fb6b37",
+      "nonce": 48,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 9,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:30.945895"
+      }
+    },
+    {
+      "index": 12,
+      "timestamp": "2026-04-14T13:13:30.960289",
+      "hash": "0044eb3189fe2483d9b7749632236c9daa6ecdfff0085db615760e86b36e4207",
+      "previous_hash": "004266fcdbbed0eca3fcf4f971673eeca8dc74883ff7ba9856b85137550dd3cb",
+      "nonce": 925,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 10,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:30.960275"
+      }
+    },
+    {
+      "index": 13,
+      "timestamp": "2026-04-14T13:13:30.975850",
+      "hash": "00975f292daa96d0b1555f45831accf0a01a9bdda1a64f3f4853a19f136ddd57",
+      "previous_hash": "0044eb3189fe2483d9b7749632236c9daa6ecdfff0085db615760e86b36e4207",
+      "nonce": 256,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 11,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:30.975834"
+      }
+    },
+    {
+      "index": 14,
+      "timestamp": "2026-04-14T13:13:30.988231",
+      "hash": "008841f94b17946449024853987ad2527d1cc80eec04afd283a29ee4d73ff9e0",
+      "previous_hash": "00975f292daa96d0b1555f45831accf0a01a9bdda1a64f3f4853a19f136ddd57",
+      "nonce": 31,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 12,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:30.988214"
+      }
+    },
+    {
+      "index": 15,
+      "timestamp": "2026-04-14T13:13:30.999118",
+      "hash": "00ba1faa91f61933c5253271541b792ea6ac6c3a5c8272eeae55684279076d95",
+      "previous_hash": "008841f94b17946449024853987ad2527d1cc80eec04afd283a29ee4d73ff9e0",
       "nonce": 2,
       "data": {
         "type": "REVOKE",
-        "node_id": 28,
-        "reason": "PACKET_RATE_HIGH(79.8)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.397613"
+        "node_id": 13,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:30.999104"
       }
     },
     {
-      "index": 21,
-      "timestamp": "2026-04-14T13:27:45.398025",
-      "hash": "00c2771e69caa10a1c8a8569956557475bd4f49e6663d1f4c1918bec7cc62271",
-      "previous_hash": "00f4306a660c984b9b2e0630646f3d3e349063d7f213c8b425caa8b169461884",
-      "nonce": 1104,
+      "index": 16,
+      "timestamp": "2026-04-14T13:13:31.009456",
+      "hash": "00f631a902b75d1a0fca9d8c63cef68939d028506a5f59b04d353d13d716da8d",
+      "previous_hash": "00ba1faa91f61933c5253271541b792ea6ac6c3a5c8272eeae55684279076d95",
+      "nonce": 189,
       "data": {
         "type": "REVOKE",
-        "node_id": 31,
-        "reason": "DATA_BLACKHOLE(sent_bs=0)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.398024"
+        "node_id": 14,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:31.009442"
       }
     },
     {
-      "index": 22,
-      "timestamp": "2026-04-14T13:27:45.401999",
-      "hash": "00e9c67ef1e5a341099c3940fb76c7f86ab2bfb886da221fbf5920cc61b5f55b",
-      "previous_hash": "00c2771e69caa10a1c8a8569956557475bd4f49e6663d1f4c1918bec7cc62271",
-      "nonce": 201,
+      "index": 17,
+      "timestamp": "2026-04-14T13:13:31.021736",
+      "hash": "00bc46f4ad71fd0d9260c2fc9b51d6bc88c376b88a2b3017e7b3e59ec6e8242c",
+      "previous_hash": "00f631a902b75d1a0fca9d8c63cef68939d028506a5f59b04d353d13d716da8d",
+      "nonce": 624,
       "data": {
         "type": "REVOKE",
-        "node_id": 45,
-        "reason": "PACKET_RATE_HIGH(70.4)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.401998"
+        "node_id": 15,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:31.021718"
       }
     },
     {
-      "index": 23,
-      "timestamp": "2026-04-14T13:27:45.402944",
-      "hash": "000033f8a18e77de6f2ca7ef96020695a7baeda7904accee22d3a216f9e33d23",
-      "previous_hash": "00e9c67ef1e5a341099c3940fb76c7f86ab2bfb886da221fbf5920cc61b5f55b",
-      "nonce": 79,
+      "index": 18,
+      "timestamp": "2026-04-14T13:13:31.035638",
+      "hash": "0061540e123c5ab6954a8efcf6f45760193d59ee9a125cd6c91e698d4fda541e",
+      "previous_hash": "00bc46f4ad71fd0d9260c2fc9b51d6bc88c376b88a2b3017e7b3e59ec6e8242c",
+      "nonce": 179,
       "data": {
         "type": "REVOKE",
-        "node_id": 49,
-        "reason": "PACKET_RATE_HIGH(71.1)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.402943"
+        "node_id": 16,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-04-14T13:13:31.035617"
       }
     },
     {
-      "index": 24,
-      "timestamp": "2026-04-14T13:27:45.403624",
-      "hash": "004f9358087c29c99f0e5ba845fa35b2509ed4635533080c28d0f0867a03c4a1",
-      "previous_hash": "000033f8a18e77de6f2ca7ef96020695a7baeda7904accee22d3a216f9e33d23",
-      "nonce": 78,
-      "data": {
-        "type": "REVOKE",
-        "node_id": 54,
-        "reason": "PACKET_RATE_HIGH(75.5)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.403623"
-      }
-    },
-    {
-      "index": 25,
-      "timestamp": "2026-04-14T13:27:45.404349",
-      "hash": "00bc1539f7325c442a0ab586478c4694d6052b985b41366383e4f566195ce4f2",
-      "previous_hash": "004f9358087c29c99f0e5ba845fa35b2509ed4635533080c28d0f0867a03c4a1",
-      "nonce": 160,
-      "data": {
-        "type": "REVOKE",
-        "node_id": 58,
-        "reason": "PACKET_RATE_HIGH(75.4)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.404348"
-      }
-    },
-    {
-      "index": 26,
-      "timestamp": "2026-04-14T13:27:45.405034",
-      "hash": "003d80a18d529f30dc8cbf8df240b73ff2a3d2ed1f52263b31b553b9be978491",
-      "previous_hash": "00bc1539f7325c442a0ab586478c4694d6052b985b41366383e4f566195ce4f2",
-      "nonce": 57,
-      "data": {
-        "type": "REVOKE",
-        "node_id": 61,
-        "reason": "DATA_BLACKHOLE(sent_bs=0)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.405033"
-      }
-    },
-    {
-      "index": 27,
-      "timestamp": "2026-04-14T13:27:45.406074",
-      "hash": "0062a1c4324a0673d672b35284bb3b3a5348a293967f675d18a066e1e3f88526",
-      "previous_hash": "003d80a18d529f30dc8cbf8df240b73ff2a3d2ed1f52263b31b553b9be978491",
-      "nonce": 305,
-      "data": {
-        "type": "REVOKE",
-        "node_id": 80,
-        "reason": "PACKET_RATE_HIGH(86.1)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.406072"
-      }
-    },
-    {
-      "index": 28,
-      "timestamp": "2026-04-14T13:27:45.407754",
-      "hash": "00ed55e83355d0674d1bc14653599ca862ace429023b170a3f6829357adacd46",
-      "previous_hash": "0062a1c4324a0673d672b35284bb3b3a5348a293967f675d18a066e1e3f88526",
-      "nonce": 53,
+      "index": 19,
+      "timestamp": "2026-04-14T13:13:31.047934",
+      "hash": "001f4cc7cbac86423261a9b69c1580728240b76788b28f944bbc34be1b55c3a8",
+      "previous_hash": "0061540e123c5ab6954a8efcf6f45760193d59ee9a125cd6c91e698d4fda541e",
+      "nonce": 28,
       "data": {
         "type": "REVOKE",
         "node_id": 84,
-        "reason": "PACKET_RATE_HIGH(75.5)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
-        "timestamp": "2026-04-14T13:27:45.407753"
+        "reason": "PACKET_RATE_HIGH(72.1)+NEIGHBOUR_ANOMALY(3/5 suspicious)",
+        "timestamp": "2026-04-14T13:13:31.047918"
       }
     }
   ]
