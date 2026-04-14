@@ -1,0 +1,14 @@
+{
+  "layer": 3,
+  "timestamp": "2026-04-14T13:27:45.865390",
+  "blockchain_blocks": 29,
+  "nodes_revoked": 27,
+  "true_blocked": 3295,
+  "false_blocked": 61,
+  "missed_threats": 105,
+  "detection_rate": 0.9691,
+  "clone_detection_rate": 0.9571,
+  "malicious_detection_rate": 0.998,
+  "chain_valid": true,
+  "fl_rounds_on_chain": 1
+}

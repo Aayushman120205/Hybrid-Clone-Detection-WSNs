@@ -1,0 +1,47 @@
+{
+  "system": "WSN FL-HybridClone v2",
+  "timestamp": "2026-04-14T13:27:45.870949",
+  "data_source": "ns3",
+  "feature_version": "v2",
+  "layer1": {
+    "layer": 1,
+    "filter_type": "Cuckoo Filter + WSN-DS signals (v3 no-leak)",
+    "timestamp": "2026-04-14T13:04:39.394144",
+    "wsn_ds_features_used": true,
+    "total_records": 19800,
+    "actual_clones": 2400,
+    "flagged": 1291,
+    "true_positives": 184,
+    "false_positives": 166,
+    "precision": 0.5257,
+    "recall": 0.0767,
+    "f1_score": 0.1338
+  },
+  "layer2": {
+    "layer": 2,
+    "model": "CNN-BiLSTM-Attention-v5-FedProx",
+    "timestamp": "2026-04-14T13:27:45.216344",
+    "accuracy": 0.9629,
+    "roc_auc": 0.928,
+    "cv_f1_mean": 0.0,
+    "cv_f1_std": 0.0,
+    "forwarded_to_layer3": 3468,
+    "num_features": 24,
+    "fl_clusters": 10,
+    "fl_rounds": 10
+  },
+  "layer3": {
+    "layer": 3,
+    "timestamp": "2026-04-14T13:27:45.865390",
+    "blockchain_blocks": 29,
+    "nodes_revoked": 27,
+    "true_blocked": 3295,
+    "false_blocked": 61,
+    "missed_threats": 105,
+    "detection_rate": 0.9691,
+    "clone_detection_rate": 0.9571,
+    "malicious_detection_rate": 0.998,
+    "chain_valid": true,
+    "fl_rounds_on_chain": 1
+  }
+}

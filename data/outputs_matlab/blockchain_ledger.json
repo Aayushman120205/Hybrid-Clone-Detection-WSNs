@@ -1,0 +1,239 @@
+{
+  "is_valid": true,
+  "chain_length": 101,
+  "registered": 85,
+  "blacklisted": [
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    7.0,
+    8.0,
+    9.0,
+    10.0,
+    11.0,
+    12.0,
+    13.0,
+    14.0,
+    15.0,
+    16.0,
+    17.0,
+    18.0,
+    19.0,
+    20.0,
+    21.0,
+    22.0,
+    23.0,
+    24.0,
+    25.0,
+    26.0,
+    27.0,
+    28.0,
+    29.0,
+    30.0,
+    31.0,
+    32.0,
+    33.0,
+    34.0,
+    35.0,
+    36.0,
+    37.0,
+    38.0,
+    39.0,
+    40.0,
+    41.0,
+    42.0,
+    43.0,
+    44.0,
+    45.0,
+    46.0,
+    47.0,
+    48.0,
+    49.0,
+    50.0,
+    51.0,
+    52.0,
+    53.0,
+    54.0,
+    55.0,
+    56.0,
+    57.0,
+    58.0,
+    59.0,
+    60.0,
+    61.0,
+    62.0,
+    63.0,
+    64.0,
+    65.0,
+    66.0,
+    67.0,
+    68.0,
+    69.0,
+    70.0,
+    71.0,
+    72.0,
+    73.0,
+    74.0,
+    75.0,
+    76.0,
+    77.0,
+    78.0,
+    79.0,
+    80.0,
+    81.0,
+    82.0,
+    83.0,
+    84.0,
+    85.0,
+    86.0,
+    87.0,
+    88.0,
+    89.0,
+    90.0,
+    91.0,
+    92.0,
+    93.0,
+    94.0,
+    95.0,
+    96.0,
+    97.0,
+    98.0,
+    99.0,
+    100.0
+  ],
+  "blocks": [
+    {
+      "index": 91,
+      "timestamp": "2026-03-14T02:36:35.387261",
+      "hash": "007bb514e3571a20d6559c17a88094b1e7328f6abd328a096dd0d2dc7f274fe0",
+      "previous_hash": "007259c88c33bbca784037e5998474513472a11b40afb05aad6ab3e9c8131d4f",
+      "nonce": 451,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 91,
+        "reason": "LOCATION_MISMATCH(dist=103.0m)+ENERGY_ANOMALY",
+        "timestamp": "2026-03-14T02:36:35.387260"
+      }
+    },
+    {
+      "index": 92,
+      "timestamp": "2026-03-14T02:36:35.388762",
+      "hash": "00ff89bc47e071b411ca0e276d3f6321a67fa844083fa3173f2d92871e9848e4",
+      "previous_hash": "007bb514e3571a20d6559c17a88094b1e7328f6abd328a096dd0d2dc7f274fe0",
+      "nonce": 569,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 92,
+        "reason": "LOCATION_MISMATCH(dist=68.7m)",
+        "timestamp": "2026-03-14T02:36:35.388761"
+      }
+    },
+    {
+      "index": 93,
+      "timestamp": "2026-03-14T02:36:35.390699",
+      "hash": "009aed9f43f4a3d82044562ebaf7e2a1fbf4b3f1b85a0fa28eaaee94106668bb",
+      "previous_hash": "00ff89bc47e071b411ca0e276d3f6321a67fa844083fa3173f2d92871e9848e4",
+      "nonce": 249,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 93,
+        "reason": "LOCATION_MISMATCH(dist=30.9m)",
+        "timestamp": "2026-03-14T02:36:35.390698"
+      }
+    },
+    {
+      "index": 94,
+      "timestamp": "2026-03-14T02:36:35.391600",
+      "hash": "00abead30dc97e240e6f65796a540b3bdd951d7dc345aa32d07cd0e8ffc34c0c",
+      "previous_hash": "009aed9f43f4a3d82044562ebaf7e2a1fbf4b3f1b85a0fa28eaaee94106668bb",
+      "nonce": 448,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 94,
+        "reason": "LOCATION_MISMATCH(dist=18.2m)",
+        "timestamp": "2026-03-14T02:36:35.391599"
+      }
+    },
+    {
+      "index": 95,
+      "timestamp": "2026-03-14T02:36:35.393093",
+      "hash": "00e7a71663a75fa3a20961b99153fb707ed21dcc4164c4dc2a5ee36a31d91534",
+      "previous_hash": "00abead30dc97e240e6f65796a540b3bdd951d7dc345aa32d07cd0e8ffc34c0c",
+      "nonce": 569,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 95,
+        "reason": "LOCATION_MISMATCH(dist=51.8m)+ENERGY_ANOMALY",
+        "timestamp": "2026-03-14T02:36:35.393092"
+      }
+    },
+    {
+      "index": 96,
+      "timestamp": "2026-03-14T02:36:35.395069",
+      "hash": "00c5bd3d0db4657b502c4c1df1c95861d7f0e764f0cba348081badba33fd9ef9",
+      "previous_hash": "00e7a71663a75fa3a20961b99153fb707ed21dcc4164c4dc2a5ee36a31d91534",
+      "nonce": 816,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 96,
+        "reason": "LOCATION_MISMATCH(dist=58.7m)",
+        "timestamp": "2026-03-14T02:36:35.395068"
+      }
+    },
+    {
+      "index": 97,
+      "timestamp": "2026-03-14T02:36:35.397663",
+      "hash": "0046175e57d8b37c629e06d9e98257881d1040f4469df14b7d0ddb9a6927b95b",
+      "previous_hash": "00c5bd3d0db4657b502c4c1df1c95861d7f0e764f0cba348081badba33fd9ef9",
+      "nonce": 315,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 97,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-03-14T02:36:35.397662"
+      }
+    },
+    {
+      "index": 98,
+      "timestamp": "2026-03-14T02:36:35.398869",
+      "hash": "00f52aa74a662a86517c42f39d479297c93c5e575ed9e1c37055e7da0ef37f54",
+      "previous_hash": "0046175e57d8b37c629e06d9e98257881d1040f4469df14b7d0ddb9a6927b95b",
+      "nonce": 327,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 98,
+        "reason": "UNREGISTERED_NODE",
+        "timestamp": "2026-03-14T02:36:35.398868"
+      }
+    },
+    {
+      "index": 99,
+      "timestamp": "2026-03-14T02:36:35.400015",
+      "hash": "00acaabd09e910f88a61b4f88c786972a74b1e898fbe2d60fd1db243c3c71e48",
+      "previous_hash": "00f52aa74a662a86517c42f39d479297c93c5e575ed9e1c37055e7da0ef37f54",
+      "nonce": 441,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 99,
+        "reason": "LOCATION_MISMATCH(dist=59.6m)",
+        "timestamp": "2026-03-14T02:36:35.400014"
+      }
+    },
+    {
+      "index": 100,
+      "timestamp": "2026-03-14T02:36:35.401453",
+      "hash": "003626eac8334ff291ae7c38e900a61f0bf0c2df06eb38ea47b041c2a1e9531f",
+      "previous_hash": "00acaabd09e910f88a61b4f88c786972a74b1e898fbe2d60fd1db243c3c71e48",
+      "nonce": 328,
+      "data": {
+        "type": "REVOKE",
+        "node_id": 100,
+        "reason": "LOCATION_MISMATCH(dist=34.4m)",
+        "timestamp": "2026-03-14T02:36:35.401452"
+      }
+    }
+  ]
+}

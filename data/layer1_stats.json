@@ -1,0 +1,14 @@
+{
+  "layer": 1,
+  "filter_type": "Cuckoo Filter + WSN-DS signals (v3 no-leak)",
+  "timestamp": "2026-04-14T13:04:39.394144",
+  "wsn_ds_features_used": true,
+  "total_records": 19800,
+  "actual_clones": 2400,
+  "flagged": 1291,
+  "true_positives": 184,
+  "false_positives": 166,
+  "precision": 0.5257,
+  "recall": 0.0767,
+  "f1_score": 0.1338
+}

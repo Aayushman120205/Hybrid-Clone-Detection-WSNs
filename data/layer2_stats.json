@@ -1,0 +1,13 @@
+{
+  "layer": 2,
+  "model": "CNN-BiLSTM-Attention-v5-FedProx",
+  "timestamp": "2026-04-14T13:27:45.216344",
+  "accuracy": 0.9629,
+  "roc_auc": 0.928,
+  "cv_f1_mean": 0.0,
+  "cv_f1_std": 0.0,
+  "forwarded_to_layer3": 3468,
+  "num_features": 24,
+  "fl_clusters": 10,
+  "fl_rounds": 10
+}
